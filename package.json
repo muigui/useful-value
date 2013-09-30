@@ -15,7 +15,7 @@
  	"engines"         : {
  		"node"        : ">= 0.8.x"
  	},
-	"keywords"        : ["value"],
+	"keywords"        : ["bless", "coerce", "value"],
 	"licenses"        : [ {
 		"type"        : "MIT",
 		"url"         : "https://raw.github.com/muigui/useful-value/master/LICENSE"
