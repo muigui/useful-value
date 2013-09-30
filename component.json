@@ -5,7 +5,7 @@
 		"chaijs/chai"       : "latest",
 		"visionmedia/mocha" : "latest"
 	},
-	"keywords"     : ["value"],
+	"keywords"     : ["bless", "coerce", "value"],
 	"license"      : "MIT",
 	"main"         : "index.js",
 	"name"         : "useful-value",
