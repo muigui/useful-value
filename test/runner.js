@@ -1,5 +1,5 @@
 chai   = require( 'chai' );
-util   = require( '../index' );
+value  = require( '../index' );
 expect = chai.expect;
 
 require( './value.test' );

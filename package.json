@@ -21,7 +21,7 @@
 		"url"         : "https://raw.github.com/muigui/useful-value/master/LICENSE"
 	} ],
 	"main"            : "./index.js",
-	"name"            : "useful-copy",
+	"name"            : "useful-value",
 	"repository"      : {
 		"type"        : "git",
 		"url"         : "muigui/useful-value"
