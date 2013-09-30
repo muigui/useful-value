@@ -150,6 +150,56 @@ Attempts to coerce primitive values "trapped" in Strings, into their real types.
 
 ```
 
+### value.empty( value:Mixed ):Boolean
+Returns `true` if the passed `value` does not exist (see `exist` below), is an empty Array, Object, String or any other enumerable type.
+
+#### Example:
+
+```javascript
+
+	var value = require( 'useful-value' );
+
+    value.empty( undefined );    // returns => true
+
+    value.empty( null );         // returns => true
+
+    value.empty( '' );           // returns => true
+
+    value.empty( [] );           // returns => true
+
+    value.empty( {} );           // returns => true
+
+    value.empty( ' ' );          // returns => false
+
+    value.empty( [1] );          // returns => false
+
+    value.empty( { 0 : null } ); // returns => false
+
+```
+
+### value.exists( value:Mixed ):Boolean
+Returns `false` if the passed `value` is `undefined` , `NaN` or `null`, returns `true` otherwise.
+
+#### Example:
+
+```javascript
+
+	var value = require( 'useful-value' );
+
+    value.exists( undefined ); // returns => false
+
+    value.exists( NaN );       // returns => false
+
+    value.exists( null );      // returns => false
+
+    value.exists( 0 );         // returns => true
+
+    value.exists( false );     // returns => true
+
+    value.exists( {} );        // returns => true
+
+```
+
 ## License
 
 (The MIT License)

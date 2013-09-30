@@ -2,14 +2,14 @@ suite( 'muigui/useful-value', function() {
 	test( '<static> value', function( done ) {
 		var d = { one : { two : { three : true, four : [1, 2, 3, 4] } } };
 
-		expect( value( d, 'one' ) ).to.eql( d.one );
-		expect( value( d, 'one.two' ) ).to.eql( d.one.two );
-		expect( value( d, 'one.two.three' ) ).to.eql( d.one.two.three );
-		expect( value( d, 'one.two.four' ) ).to.eql( d.one.two.four );
-		expect( value( d, 'one.two.four.2' ) ).to.eql( d.one.two.four[2] );
-		expect( value( d, 'one.three.four.2' ) ).to.equal( undefined );
-		expect( value( d, 'one.two.beep.7' ) ).to.equal( undefined );
-		expect( value( d, 'one.two.four.7' ) ).to.equal( undefined );
+		expect( value( d, 'one' ) ).to.deep.equal( d.one );
+		expect( value( d, 'one.two' ) ).to.deep.equal( d.one.two );
+		expect( value( d, 'one.two.three' ) ).to.deep.equal( d.one.two.three );
+		expect( value( d, 'one.two.four' ) ).to.deep.equal( d.one.two.four );
+		expect( value( d, 'one.two.four.2' ) ).to.deep.equal( d.one.two.four[2] );
+		expect( value( d, 'one.three.four.2' ) ).to.be.undefined;
+		expect( value( d, 'one.two.beep.7' ) ).to.be.undefined;
+		expect( value( d, 'one.two.four.7' ) ).to.be.undefined;
 
 		done();
 	} );
@@ -23,7 +23,7 @@ suite( 'muigui/useful-value', function() {
 		value.assign( returned, 'one.two.three', true );
 		value.assign( returned, 'one.two.four', [1, 2, 3, 4] );
 
-		expect( returned ).to.eql( expected );
+		expect( returned ).to.deep.equal( expected );
 
 		done();
 	} );
@@ -39,11 +39,11 @@ suite( 'muigui/useful-value', function() {
 	} );
 
 	test( '<static> value.coerce', function( done ) {
-		expect( value.coerce( 'false'     ) ).to.equal( false );
-		expect( value.coerce( 'null'      ) ).to.equal( null );
-		expect( value.coerce( 'true'      ) ).to.equal( true );
-		expect( value.coerce( 'undefined' ) ).to.equal( undefined );
-		expect( isNaN( value.coerce( 'NaN' ) ) ).to.equal( true );
+		expect( value.coerce( 'false' ) ).to.be.false;
+		expect( value.coerce( 'null' ) ).to.be.null;
+		expect( value.coerce( 'true' ) ).to.be.true;
+		expect( value.coerce( 'undefined' ) ).to.be.undefined;
+		expect( isNaN( value.coerce( 'NaN' ) ) ).to.be.true;
 		expect( value.coerce( '1' ) ).to.equal( 1 );
 		expect( value.coerce( '12' ) ).to.equal( 12 );
 		expect( value.coerce( '123' ) ).to.equal( 123 );
@@ -52,6 +52,34 @@ suite( 'muigui/useful-value', function() {
 		expect( value.coerce( '123.456' ) ).to.equal( 123.456 );
 		expect( value.coerce( '1e10' ) ).to.equal( 10000000000 );
 		expect( value.coerce( '.0000000001e10' ) ).to.equal( 1 );
+
+		done();
+	} );
+	
+	
+	test( '<static> value.empty', function( done ) {
+		expect( value.empty( '' ) ).to.be.true;
+		expect( value.empty( [] ) ).to.be.true;
+		expect( value.empty( NaN ) ).to.be.true;
+		expect( value.empty( {} ) ).to.be.true;
+		expect( value.empty( null ) ).to.be.true;
+		expect( value.empty( undefined ) ).to.be.true;
+		expect( value.empty() ).to.be.true;
+		expect( value.empty( 0 ) ).to.be.false;
+		expect( value.empty( ' ' ) ).to.be.false;
+		expect( value.empty( [''] ) ).to.be.false;
+		expect( value.empty( { foo : '' } ) ).to.be.false;
+
+		done();
+	} );
+
+	test( '<static> value.exists', function( done ) {
+		expect( value.exists( 0 ) ).to.be.true;
+		expect( value.exists( false ) ).to.be.true;
+		expect( value.exists( '' ) ).to.be.true;
+		expect( value.exists( NaN ) ).to.be.false;
+		expect( value.exists( null ) ).to.be.false;
+		expect( value.exists( undefined ) ).to.be.false;
 
 		done();
 	} );

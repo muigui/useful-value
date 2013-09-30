@@ -56,6 +56,32 @@
 		return !isNaN( num ) ? num : ( str = String( item ) ) in force ? force[str] : item;
 	}
 
+	function empty( item ) {
+		if ( !exists( item ) )
+			return true;
+
+		var len, type = typeof item;
+
+		if ( type === 'object' ) {
+			if ( 'length' in item && typeof ( len = item.length ) === 'number' )
+				return !len;
+
+			if ( 'size' in item && typeof ( len = item.size ) === 'number' )
+				return !len;
+
+			return !Object.keys( item ).length;
+		}
+
+		if ( type === 'string' )
+			return !item.length;
+
+		return false;
+	}
+
+	function exists( item ) {
+		return !( item === null || item === UNDEF || ( typeof item == 'number' && isNaN( item ) ) );
+	}
+
 	function is_mod( mod ) {
 		if ( Module === null )
 			return false;
@@ -109,3 +135,5 @@
 	value.assign   = assign;
 	value.bless    = bless;
 	value.coerce   = coerce;
+	value.empty    = empty;
+	value.exists   = exists;
