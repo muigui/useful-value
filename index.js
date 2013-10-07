@@ -2,6 +2,8 @@
 		var prop = key;
 
 		if ( item !== null && item !== UNDEF ) {
+			key = String( key );
+
 			if ( !!~key.indexOf( '.' ) ) {
 				key    = key.split( '.' );
 				prop   = key.pop();

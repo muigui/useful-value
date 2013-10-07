@@ -14,7 +14,7 @@ suite( 'muigui/useful-value', function() {
 		done();
 	} );
 
-	test( '<static> value.assign', function( done ) {
+	test( '<static> value.assign:Object', function( done ) {
 		var expected = { one : { two : { three : true, four : [1, 2, 3, 4] } } },
 			returned = {};
 
@@ -22,6 +22,20 @@ suite( 'muigui/useful-value', function() {
 		value.assign( returned, 'one.two', {} );
 		value.assign( returned, 'one.two.three', true );
 		value.assign( returned, 'one.two.four', [1, 2, 3, 4] );
+
+		expect( returned ).to.deep.equal( expected );
+
+		done();
+	} );
+
+	test( '<static> value.assign:Array', function( done ) {
+		var expected = [1, 2, [3, 4, [5, 6]]],
+			returned = [];
+
+		value.assign( returned, 0, 1 );
+		value.assign( returned, 1, 2 );
+		value.assign( returned, 2, [3, 4] );
+		value.assign( returned, '2.2', [5,6] );
 
 		expect( returned ).to.deep.equal( expected );
 
