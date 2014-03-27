@@ -10,6 +10,10 @@ suite( 'muigui/useful-value', function() {
 		expect( value( d, 'one.three.four.2' ) ).to.be.undefined;
 		expect( value( d, 'one.two.beep.7' ) ).to.be.undefined;
 		expect( value( d, 'one.two.four.7' ) ).to.be.undefined;
+		expect( value( 'foo', 'one.two.four.7' ) ).to.be.undefined;
+		expect( value( 9, 'one.two.four.7' ) ).to.be.undefined;
+		expect( value( undefined, 'one.two.four.7' ) ).to.be.undefined;
+		expect( value( null, 'one.two.four.7' ) ).to.be.undefined;
 
 		done();
 	} );
@@ -69,8 +73,8 @@ suite( 'muigui/useful-value', function() {
 
 		done();
 	} );
-	
-	
+
+
 	test( '<static> value.empty', function( done ) {
 		expect( value.empty( '' ) ).to.be.true;
 		expect( value.empty( [] ) ).to.be.true;

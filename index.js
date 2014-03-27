@@ -102,7 +102,7 @@
 		if ( item === null || item === UNDEF )
 			return UNDEF;
 
-		if ( key in item )
+		if ( typeof item === 'object' && key in item )
 			return item[key];
 
 		if ( isNaN( +key ) ) {
