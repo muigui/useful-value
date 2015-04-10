@@ -4,13 +4,29 @@
 
 ## Installation
 
-  Install with [component(1)](http://component.io):
+```shell
 
-    $ component install muigui/useful-value
+    >$ npm install useful-value
 
-  Install with npm:
+```
 
-    $ npm install useful-value
+## Test
+
+```shell
+
+    useful-value>$ npm test
+
+```
+
+## Build
+
+if you want to convert useful-value into es5, you can simply run:
+
+```shell
+
+    useful-value>$ npm run build
+
+```
 
 ## API
 
